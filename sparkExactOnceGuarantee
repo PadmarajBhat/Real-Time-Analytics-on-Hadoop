@@ -1,0 +1,2798 @@
+(base) C:\Users\Dell\Desktop\Hadoop\Spark>pyspark
+Python 3.7.3 (default, Mar 27 2019, 17:13:21) [MSC v.1915 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+19/05/05 22:06:57 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.4.1
+      /_/
+
+Using Python version 3.7.3 (default, Mar 27 2019 17:13:21)
+SparkSession available as 'spark'.
+>>> from pyspark.streaming import StreamingContext
+>>>
+>>> ssc = StreamingContext(spark.sparkContext, 1)
+>>>
+>>> lines = ssc.socketTextStream("localhost", 9999)
+>>>
+>>> words = lines.flatMap(lambda line: line.split(" "))
+>>> pairs = words.map(lambda word: (word, 1))
+>>> wordCounts = pairs.reduceByKey(lambda x, y: x + y)
+>>> wordCounts.pprint()
+>>>
+>>> ssc.start()             # Start the computation
+>>> ssc.awaitTermination()  # Wait for the computation to terminate
+-------------------------------------------
+Time: 2019-05-05 22:07:08
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 6:>                  (0 + 1) / 1]19/05/05 22:07:17 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Socket data stream had no more data
+19/05/05 22:07:17 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Socket data stream had no more data
+[Stage 0:>                  (0 + 1) / 1][Stage 8:>                  (0 + 3) / 3]19/05/05 22:07:20 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:07:20 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:09
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 10:>                 (0 + 1) / 1]19/05/05 22:07:23 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:07:23 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+[Stage 0:>                  (0 + 1) / 1][Stage 12:>                 (0 + 3) / 3]19/05/05 22:07:27 WARN RandomBlockReplicationPolicy: Expecting 1 replicas with only 0 peer/s.
+19/05/05 22:07:27 WARN BlockManager: Block input-0-1557074247200 replicated to only 0 peer(s) instead of 1 peers
+-------------------------------------------
+Time: 2019-05-05 22:07:10
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 14:>                 (0 + 1) / 1]19/05/05 22:07:30 WARN RandomBlockReplicationPolicy: Expecting 1 replicas with only 0 peer/s.
+19/05/05 22:07:30 WARN BlockManager: Block input-0-1557074250200 replicated to only 0 peer(s) instead of 1 peers
+-------------------------------------------
+Time: 2019-05-05 22:07:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:16
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 40:>                 (0 + 3) / 3]19/05/05 22:08:12 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Socket data stream had no more data
+19/05/05 22:08:12 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Socket data stream had no more data
+-------------------------------------------
+Time: 2019-05-05 22:07:17
+-------------------------------------------
+
+19/05/05 22:08:15 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:08:16 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+[Stage 0:>                  (0 + 1) / 1][Stage 44:>                 (0 + 3) / 3]19/05/05 22:08:19 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:08:19 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+19/05/05 22:08:22 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:08:22 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:18
+-------------------------------------------
+
+19/05/05 22:08:25 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:08:25 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+[Stage 0:>                  (0 + 1) / 1][Stage 48:>                 (0 + 3) / 3]19/05/05 22:08:28 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:08:28 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:19
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 50:>                 (0 + 1) / 1]19/05/05 22:08:31 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:08:31 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:28
+-------------------------------------------
+('used', 1)
+('name', 1)
+('there', 1)
+('the', 1)
+('commonly', 1)
+('first', 1)
+('program', 1)
+('Even', 1)
+('spark', 1)
+('has', 1)
+...
+
+-------------------------------------------
+Time: 2019-05-05 22:07:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:31
+-------------------------------------------
+('It', 1)
+('used', 1)
+('only', 1)
+('when', 1)
+('and', 1)
+('be', 1)
+('used.', 1)
+('is', 4)
+('Hence', 1)
+('always', 1)
+...
+
+-------------------------------------------
+Time: 2019-05-05 22:07:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:54
+-------------------------------------------
+
+19/05/05 22:13:03 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Socket data stream had no more data
+19/05/05 22:13:22 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Socket data stream had no more data
+-------------------------------------------
+Time: 2019-05-05 22:07:55
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 196:>                (0 + 3) / 3]19/05/05 22:13:25 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:13:25 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+19/05/05 22:13:28 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:13:28 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:56
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 200:>                (0 + 3) / 3]19/05/05 22:13:31 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:13:31 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+19/05/05 22:13:34 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:13:34 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:57
+-------------------------------------------
+
+[Stage 0:>                  (0 + 1) / 1][Stage 204:>                (0 + 3) / 3]19/05/05 22:13:37 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error connecting to localhost:9999
+java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+19/05/05 22:13:37 ERROR ReceiverTracker: Deregistered receiver for stream 0: Restarting receiver with delay 2000ms: Error connecting to localhost:9999 - java.net.ConnectException: Connection refused: connect
+        at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+        at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+        at java.net.PlainSocketImpl.connect(Unknown Source)
+        at java.net.SocksSocketImpl.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.connect(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at java.net.Socket.<init>(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver.onStart(SocketInputDStream.scala:61)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor.startReceiver(ReceiverSupervisor.scala:149)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:198)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+
+-------------------------------------------
+Time: 2019-05-05 22:07:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:07:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:28
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:31
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:54
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:55
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:56
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:57
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:08:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:28
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:31
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:54
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:55
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:56
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:57
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:09:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:28
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:31
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:54
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:55
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:56
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:57
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:10:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:28
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:31
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:54
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:55
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:56
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:57
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:11:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:28
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:31
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:54
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:55
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:56
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:57
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:12:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:24
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:25
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:26
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:27
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:28
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:29
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:30
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:31
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:32
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:33
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:34
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:35
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:36
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:37
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:38
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:39
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:40
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:41
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:42
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:43
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:44
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:45
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:46
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:47
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:48
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:49
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:50
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:51
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:52
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:53
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:54
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:55
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:56
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:57
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:58
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:13:59
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:00
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:01
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:02
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:03
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:04
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:05
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:06
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:07
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:08
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:09
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:10
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:11
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:12
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:13
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:14
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:15
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:16
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:17
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:18
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:19
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:20
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:21
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:22
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:23
+-------------------------------------------
+
+-------------------------------------------
+Time: 2019-05-05 22:14:24
+-------------------------------------------
+
+19/05/05 23:00:16 ERROR ReceiverTracker: Deregistered receiver for stream 0: Stopped by driver
+19/05/05 23:00:16 WARN SocketReceiver: Error receiving data
+java.net.SocketException: Socket closed
+        at java.net.SocketInputStream.socketRead0(Native Method)
+        at java.net.SocketInputStream.socketRead(Unknown Source)
+        at java.net.SocketInputStream.read(Unknown Source)
+        at java.net.SocketInputStream.read(Unknown Source)
+        at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+        at sun.nio.cs.StreamDecoder.implRead(Unknown Source)
+        at sun.nio.cs.StreamDecoder.read(Unknown Source)
+        at java.io.InputStreamReader.read(Unknown Source)
+        at java.io.BufferedReader.fill(Unknown Source)
+        at java.io.BufferedReader.readLine(Unknown Source)
+        at java.io.BufferedReader.readLine(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver$$anon$1.getNext(SocketInputDStream.scala:121)
+        at org.apache.spark.streaming.dstream.SocketReceiver$$anon$1.getNext(SocketInputDStream.scala:119)
+        at org.apache.spark.util.NextIterator.hasNext(NextIterator.scala:73)
+        at org.apache.spark.streaming.dstream.SocketReceiver.receive(SocketInputDStream.scala:91)
+        at org.apache.spark.streaming.dstream.SocketReceiver$$anon$2.run(SocketInputDStream.scala:72)
+19/05/05 23:00:16 WARN ReceiverSupervisorImpl: Restarting receiver with delay 2000 ms: Error receiving data
+java.net.SocketException: Socket closed
+        at java.net.SocketInputStream.socketRead0(Native Method)
+        at java.net.SocketInputStream.socketRead(Unknown Source)
+        at java.net.SocketInputStream.read(Unknown Source)
+        at java.net.SocketInputStream.read(Unknown Source)
+        at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+        at sun.nio.cs.StreamDecoder.implRead(Unknown Source)
+        at sun.nio.cs.StreamDecoder.read(Unknown Source)
+        at java.io.InputStreamReader.read(Unknown Source)
+        at java.io.BufferedReader.fill(Unknown Source)
+        at java.io.BufferedReader.readLine(Unknown Source)
+        at java.io.BufferedReader.readLine(Unknown Source)
+        at org.apache.spark.streaming.dstream.SocketReceiver$$anon$1.getNext(SocketInputDStream.scala:121)
+        at org.apache.spark.streaming.dstream.SocketReceiver$$anon$1.getNext(SocketInputDStream.scala:119)
+        at org.apache.spark.util.NextIterator.hasNext(NextIterator.scala:73)
+        at org.apache.spark.streaming.dstream.SocketReceiver.receive(SocketInputDStream.scala:91)
+        at org.apache.spark.streaming.dstream.SocketReceiver$$anon$2.run(SocketInputDStream.scala:72)
+19/05/05 23:00:16 WARN ReceiverSupervisorImpl: Receiver has been stopped
+Exception in thread "receiver-supervisor-future-16" java.lang.Error: java.lang.InterruptedException: sleep interrupted
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.InterruptedException: sleep interrupted
+        at java.lang.Thread.sleep(Native Method)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply$mcV$sp(ReceiverSupervisor.scala:196)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at org.apache.spark.streaming.receiver.ReceiverSupervisor$$anonfun$restartReceiver$1.apply(ReceiverSupervisor.scala:189)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+        at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+        ... 3 more
+[Stage 1752:>                                                       (0 + 3) / 3]ERROR:root:Exception while sending command.
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1152, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "C:\Users\Dell\Anaconda3\lib\socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\context.py", line 269, in signal_handler
+    self.cancelAllJobs()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\context.py", line 1039, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1257, in __call__
+    answer, self.gateway_client, self.target_id, self.name)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\sql\utils.py", line 63, in deco
+    return f(*a, **kw)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\protocol.py", line 328, in get_return_value
+    format(target_id, ".", name), value)
+py4j.protocol.Py4JJavaError: An error occurred while calling o149192.cancelAllJobs.
+: java.lang.IllegalStateException: Cannot call methods on a stopped SparkContext.
+This stopped SparkContext was created at:
+
+org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+java.lang.reflect.Constructor.newInstance(Unknown Source)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:238)
+py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.lang.Thread.run(Unknown Source)
+
+The currently active SparkContext was created at:
+
+org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+java.lang.reflect.Constructor.newInstance(Unknown Source)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:238)
+py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.lang.Thread.run(Unknown Source)
+
+        at org.apache.spark.SparkContext.assertNotStopped(SparkContext.scala:100)
+        at org.apache.spark.SparkContext.cancelAllJobs(SparkContext.scala:2248)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+        at java.lang.reflect.Method.invoke(Unknown Source)
+        at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+        at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+        at py4j.Gateway.invoke(Gateway.java:282)
+        at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+        at py4j.commands.CallCommand.execute(CallCommand.java:79)
+        at py4j.GatewayConnection.run(GatewayConnection.java:238)
+        at java.lang.Thread.run(Unknown Source)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1164, in send_command
+    "Error while receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while receiving
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\streaming\context.py", line 192, in awaitTermination
+    self._jssc.awaitTermination()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1257, in __call__
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\sql\utils.py", line 63, in deco
+    return f(*a, **kw)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\protocol.py", line 336, in get_return_value
+py4j.protocol.Py4JError: An error occurred while calling o33.awaitTermination
+>>> ----------------------------------------
+Exception happened during processing of request from ('127.0.0.1', 58851)
+Terminate batch job (Y/N)? Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\socketserver.py", line 316, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "C:\Users\Dell\Anaconda3\lib\socketserver.py", line 347, in process_request
+    self.finish_request(request, client_address)
+  File "C:\Users\Dell\Anaconda3\lib\socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "C:\Users\Dell\Anaconda3\lib\socketserver.py", line 720, in __init__
+    self.handle()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\accumulators.py", line 269, in handle
+    poll(accum_updates)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\accumulators.py", line 241, in poll
+    if func():
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\accumulators.py", line 245, in accum_updates
+    num_updates = read_int(self.rfile)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\serializers.py", line 715, in read_int
+    length = stream.read(4)
+  File "C:\Users\Dell\Anaconda3\lib\socket.py", line 589, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+----------------------------------------
+^CERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1145, in send_command
+    self.socket.sendall(command.encode("utf-8"))
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1149, in send_command
+    "Error while sending", e, proto.ERROR_ON_SEND)
+py4j.protocol.Py4JNetworkError: Error while sending
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1145, in send_command
+    self.socket.sendall(command.encode("utf-8"))
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1149, in send_command
+    "Error while sending", e, proto.ERROR_ON_SEND)
+py4j.protocol.Py4JNetworkError: Error while sending
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1145, in send_command
+    self.socket.sendall(command.encode("utf-8"))
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1149, in send_command
+    "Error while sending", e, proto.ERROR_ON_SEND)
+py4j.protocol.Py4JNetworkError: Error while sending
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Readline internal error
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1145, in send_command
+    self.socket.sendall(command.encode("utf-8"))
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1149, in send_command
+    "Error while sending", e, proto.ERROR_ON_SEND)
+py4j.protocol.Py4JNetworkError: Error while sending
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1145, in send_command
+    self.socket.sendall(command.encode("utf-8"))
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1149, in send_command
+    "Error while sending", e, proto.ERROR_ON_SEND)
+py4j.protocol.Py4JNetworkError: Error while sending
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1145, in send_command
+    self.socket.sendall(command.encode("utf-8"))
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 985, in send_command
+    response = connection.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1149, in send_command
+    "Error while sending", e, proto.ERROR_ON_SEND)
+py4j.protocol.Py4JNetworkError: Error while sending
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyreadline\console\console.py", line 768, in hook_wrapper_23
+    res = ensure_str(readline_hook(prompt))
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyreadline\rlmain.py", line 571, in readline
+    self._readline_from_keyboard()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyreadline\rlmain.py", line 536, in _readline_from_keyboard
+    if self._readline_from_keyboard_poll():
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyreadline\rlmain.py", line 552, in _readline_from_keyboard_poll
+    event = c.getkeypress()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyreadline\console\console.py", line 524, in getkeypress
+    e = self.get()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyreadline\console\console.py", line 516, in get
+    byref(Cevent), 1, byref(count))
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\context.py", line 269, in signal_handler
+    self.cancelAllJobs()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\context.py", line 1039, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1255, in __call__
+    answer = self.gateway_client.send_command(command)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1000, in send_command
+    response = self.send_command(command, binary=binary)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1000, in send_command
+    response = self.send_command(command, binary=binary)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1000, in send_command
+    response = self.send_command(command, binary=binary)
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 983, in send_command
+    connection = self._get_connection()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 931, in _get_connection
+    connection = self._create_connection()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 937, in _create_connection
+    connection.start()
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1079, in start
+    raise Py4JNetworkError(msg, e)
+py4j.protocol.Py4JNetworkError: An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+>>>
+ERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\context.py:446: RuntimeWarning: Unable to cleanly shutdown Spark JVM process. It is possible that the process has crashed, been killed or may also be in a zombie state.
+  RuntimeWarning
+SUCCESS: The process with PID 3128 (child process of PID 10884) has been terminated.
+SUCCESS: The process with PID 10884 (child process of PID 8408) has been terminated.
+ERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+ERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+ERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+ERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+ERROR:py4j.java_gateway:An error occurred while trying to connect to the Java server (127.0.0.1:58800)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 929, in _get_connection
+    connection = self.deque.pop()
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Anaconda3\lib\site-packages\pyspark\python\lib\py4j-0.10.7-src.zip\py4j\java_gateway.py", line 1067, in start
+    self.socket.connect((self.address, self.port))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+^CTerminate batch job (Y/N)? Y
+Terminate batch job (Y/N)? Y
+
+(base) C:\Users\Dell\Desktop\Hadoop\Spark>
