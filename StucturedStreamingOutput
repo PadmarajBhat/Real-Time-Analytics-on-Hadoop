@@ -1,0 +1,148 @@
+>>> query = wordCount.writeStream.format("console").outputMode("complete").trigger(processingTime='2 seconds').start()
+>>> 19/05/09 22:53:12 WARN SizeEstimator: Failed to check whether UseCompressedOops is set; assuming yes applications! I
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++----+-----+
+|word|count|
++----+-----+
++----+-----+
+
+19/05/09 22:54:35 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 85687 milliseconds
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++---------+-----+
+|     word|count|
++---------+-----+
+|   there?|    1|
+|       is|    2|
+|   second|    1|
+|    third|    1|
+|        u|    1|
+|      are|    1|
+|sentence.|    2|
+|     this|    2|
++---------+-----+
+
+19/05/09 22:55:38 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 63169 milliseconds
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++---------+-----+
+|     word|count|
++---------+-----+
+|   there?|    1|
+|       is|    3|
+|   second|    1|
+|    third|    1|
+|        u|    1|
+|      are|    1|
+|sentence.|    3|
+|      4th|    1|
+|     this|    3|
++---------+-----+
+
+19/05/09 22:57:32 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 78036 milliseconds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
