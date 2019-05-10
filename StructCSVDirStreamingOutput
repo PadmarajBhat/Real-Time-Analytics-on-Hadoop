@@ -1,0 +1,37 @@
+
+(base) C:\Users\Dell\Desktop\Hadoop\Real Time Analytics with Apache Storm>python pysparkInputFile.py
+19/05/10 19:33:20 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+19/05/10 19:33:24 WARN SizeEstimator: Failed to check whether UseCompressedOops is set; assuming yes
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++-------------+-----+
+|winners_party|count|
++-------------+-----+
+|         SDPI|    6|
+|          INC|  456|
+|          BJP|  600|
+|          JDS|   84|
+|       Others|   18|
+|  Independent|   24|
++-------------+-----+
+
+19/05/10 19:36:03 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 155016 milliseconds
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++-------------+-----+
+|winners_party|count|
++-------------+-----+
+|         SDPI|    7|
+|          INC|  532|
+|          BJP|  700|
+|          JDS|   98|
+|       Others|   21|
+|  Independent|   28|
++-------------+-----+
+
+19/05/10 19:39:10 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 148167 milliseconds
