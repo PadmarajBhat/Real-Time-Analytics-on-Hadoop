@@ -16,3 +16,6 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
 
   * https://stackoverflow.com/a/56302024/8693106
   * trying to answer https://stackoverflow.com/questions/56297660/which-pyspark-abstraction-is-appropriate-for-my-large-matrix-multiplication
+     * Exploring googles colab notebook in cafe.
+        * !pip install pyspark
+          * installed the pyspark in 10 seconds, there after I m free to start the analysis
