@@ -14,4 +14,5 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
 
 * Stackoverflow:
 
-https://stackoverflow.com/a/56302024/8693106
+  * https://stackoverflow.com/a/56302024/8693106
+  * trying to answer https://stackoverflow.com/questions/56297660/which-pyspark-abstraction-is-appropriate-for-my-large-matrix-multiplication
