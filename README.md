@@ -21,3 +21,4 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
           * installed the pyspark in 10 seconds, there after I m free to start the analysis
           
         * "take" gives the value to the local variable from RDD. Key operation in colab as collect function is not working.
+        * co lab gives integration with stackoverflow, with which the exception can be directly queried in stackoverflow.
