@@ -24,3 +24,5 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
         * co lab gives integration with stackoverflow, with which the exception can be directly queried in stackoverflow.
         * there is a medium post which talks about very large matrix multiplication:
           * https://medium.com/@rantav/large-scale-matrix-multiplication-with-pyspark-or-how-to-match-two-large-datasets-of-company-1be4b1b2871e
+           
+          * Idea here is to broadcast the matrix B and parallelize matrix A when we need to multiply matrices A & B.
