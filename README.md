@@ -26,3 +26,4 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
           * https://medium.com/@rantav/large-scale-matrix-multiplication-with-pyspark-or-how-to-match-two-large-datasets-of-company-1be4b1b2871e
            
           * Idea here is to broadcast the matrix B and parallelize matrix A when we need to multiply matrices A & B.
+          * Here the matrix multiplication is done vector by vector method.
