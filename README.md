@@ -35,4 +35,5 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
 * import can be 
  * ._ for all import
  * .a for only one component 
- * 
+ * .{a,b} for 2 or more
+
