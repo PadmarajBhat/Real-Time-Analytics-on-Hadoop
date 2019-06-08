@@ -27,3 +27,7 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
            
           * Idea here is to broadcast the matrix B and parallelize matrix A when we need to multiply matrices A & B.
           * Here the matrix multiplication is done vector by vector method.
+* scala:
+  * val f= (x:Int)==>
+  * val f(x:Int)=
+  * are same
