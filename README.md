@@ -33,4 +33,6 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
   * are same
 
 * import can be 
- * _ for all import
+ * ._ for all import
+ * .a for only one component 
+ * 
