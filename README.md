@@ -31,3 +31,6 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
   * val f= (x:Int)==>
   * val f(x:Int)=
   * are same
+
+* import can be 
+ * _ for all import
