@@ -39,4 +39,8 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
  * .{vector => vsc2} for alias 
  * .{ABc => _, _} to leave ABC from importing 
 
-* 
+* data structure:
+ * tuple through ()
+ * List() for list 
+ * indexing list through 
+ * multivariable assignment through tuple 
