@@ -36,4 +36,6 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
  * ._ for all import
  * .a for only one component 
  * .{a,b} for 2 or more
+ * .{vector => vsc2} for alias 
 
+* 
