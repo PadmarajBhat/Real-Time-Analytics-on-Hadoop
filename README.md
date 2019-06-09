@@ -44,3 +44,7 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
  * List() for list 
  * indexing list through 
  * multivariable assignment through tuple 
+ * 1 to 10 by 2 for odd series 
+
+* control:
+ * if, if else, while, do while, for 
