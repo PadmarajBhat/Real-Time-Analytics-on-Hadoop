@@ -19,3 +19,9 @@ println(xs .:: (5 to 10) .:: (1)) ==> List(1, Range(5, 6, 7, 8, 9, 10), 2, 3, 4)
 
 println(1 :: xs .:: (2)) ==> List(1, 2, 2, 3, 4)
 ```
+* optional value : may have None or Some()
+ 
+ ```
+ def abc : Option[String] = if (true) None else Some("1")
+abc
+ ```
