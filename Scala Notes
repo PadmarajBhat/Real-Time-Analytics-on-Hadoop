@@ -1,0 +1,4 @@
+##### Scala notes continued from Structuring information : https://www.scala-exercises.org/scala_tutorial/structuring_information
+* case class to group the related data
+* seal trait to define set of values for variable, compiler warning in case of not handling all the cases.
+* equal to operator can perform the comparison between objects.
