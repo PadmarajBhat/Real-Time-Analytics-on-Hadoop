@@ -2,3 +2,9 @@
 * case class to group the related data
 * seal trait to define set of values for variable, compiler warning in case of not handling all the cases.
 * equal to operator can perform the comparison between objects.
+
+
+##### https://www.scala-exercises.org/scala_tutorial/higher_order_functions
+* anonymous function
+  * why do we need to have x=>x ???
+* Higher order function : function taking function as argument or returing function as value
