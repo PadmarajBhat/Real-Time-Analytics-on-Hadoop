@@ -8,3 +8,14 @@
 * anonymous function
   * why do we need to have x=>x ???
 * Higher order function : function taking function as argument or returing function as value
+
+
+##### https://www.scala-exercises.org/scala_tutorial/standard_library
+* right association
+```
+println(1 :: (5 to 10) ::xs) ==> List(1, Range(5, 6, 7, 8, 9, 10), 2, 3, 4)
+
+println(xs .:: (5 to 10) .:: (1)) ==> List(1, Range(5, 6, 7, 8, 9, 10), 2, 3, 4)
+
+println(1 :: xs .:: (2)) ==> List(1, 2, 2, 3, 4)
+```
