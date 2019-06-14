@@ -27,7 +27,17 @@ abc
  ```
 
 * Either, Left, Right
- * in "Some" case we have either type of the variable or None case
- * In Either case we can have type of the variable or any specified type.
- * Right keyword explicitly mentions it is 2nd type in Either case
- * Similarly, Left indicates the first type mentioned in the Either declaration.
+  * in "Some" case we have either type of the variable or None case
+  * In Either case we can have type of the variable or any specified type.
+  * Right keyword explicitly mentions it is 2nd type in Either case
+  * Similarly, Left indicates the first type mentioned in the Either declaration.
+
+* tuples:
+
+```
+val a  = (1,2)
+val (b,c) = a
+println(b,c)
+
+Here b = 1 and c is 2
+```
