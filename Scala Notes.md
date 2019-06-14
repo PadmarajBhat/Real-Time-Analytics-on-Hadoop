@@ -25,3 +25,9 @@ println(1 :: xs .:: (2)) ==> List(1, 2, 2, 3, 4)
  def abc : Option[String] = if (true) None else Some("1")
 abc
  ```
+
+* Either, Left, Right
+ * in "Some" case we have either type of the variable or None case
+ * In Either case we can have type of the variable or any specified type.
+ * Right keyword explicitly mentions it is 2nd type in Either case
+ * Similarly, Left indicates the first type mentioned in the Either declaration.
