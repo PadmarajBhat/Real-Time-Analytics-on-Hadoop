@@ -36,7 +36,7 @@ abc
   val aa = Left(2)
   println( aa.left.get == 2) ==> true
   println(aa.right.get == 2) ==> 
-java.util.NoSuchElementException: Either.right.value on Left
+  java.util.NoSuchElementException: Either.right.value on Left
   ```
 * tuples:
 
@@ -48,3 +48,13 @@ println(b,c)
 Here b = 1 and c is 2
 ```
 
+* OOPs
+  * default variables inside class is public, need to specify private to make it private
+  ```
+  class abc(x:Int){
+  val xx = x
+  }
+
+  println(new abc(10).xx)
+  ```
+  * Not only defines a class but also constructor
