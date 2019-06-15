@@ -58,3 +58,6 @@ Here b = 1 and c is 2
   println(new abc(10).xx)
   ```
   * Not only defines a class but also constructor
+  * auxillary constructor - this constructor
+  * abstract class = cannot have object instantiation, may or may not define function, class extending can override the method and parameter
+  * def + (x : class_name) = operator overriding
