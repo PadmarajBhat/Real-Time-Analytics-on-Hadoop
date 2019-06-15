@@ -48,3 +48,8 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
 
 * control:
  * if, if else, while, do while, for 
+
+
+* Pyspark Cheat Sheet:
+  * https://www.qubole.com/resources/pyspark-cheatsheet/
+    * df.select("firstName",  Show firstName, df.lastName.like("Smith")).show()
