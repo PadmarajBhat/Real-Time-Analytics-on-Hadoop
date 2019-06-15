@@ -53,3 +53,4 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
 * Pyspark Cheat Sheet:
   * https://www.qubole.com/resources/pyspark-cheatsheet/
     * df.select("firstName",  Show firstName, df.lastName.like("Smith")).show()
+    * https://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=explode for definition of explode.
