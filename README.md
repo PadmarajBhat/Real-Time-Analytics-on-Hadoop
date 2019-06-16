@@ -57,4 +57,14 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
     * Row (sql function) has .asDict() function converts the row to dictionary for ease of access.
     * Window : readStream, writeStream, output mode (complete, append, update)
     * pyspark.ml.feature ==> StringIndexer : for transforming to string to number 
-    * 
+    * xgboost support through 
+    
+    ```
+    spark.sparkContext.addPyFile("YOUR_PATH/sparkxgb.zip")
+    from sparkxgb import XGBoostEstimator
+    xgboost = XGBoostEstimator(
+        featuresCol="features", 
+        labelCol="Survival", 
+        predictionCol="prediction"
+    )
+    ```
