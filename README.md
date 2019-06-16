@@ -56,3 +56,5 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
     * https://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=explode for definition of explode.
     * Row (sql function) has .asDict() function converts the row to dictionary for ease of access.
     * Window : readStream, writeStream, output mode (complete, append, update)
+    * pyspark.ml.feature ==> StringIndexer : for transforming to string to number 
+    * 
