@@ -55,3 +55,4 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
     * df.select("firstName",  Show firstName, df.lastName.like("Smith")).show()
     * https://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=explode for definition of explode.
     * Row (sql function) has .asDict() function converts the row to dictionary for ease of access.
+    * Window : readStream, writeStream, output mode (complete, append, update)
