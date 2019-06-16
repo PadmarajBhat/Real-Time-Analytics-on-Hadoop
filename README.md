@@ -68,3 +68,6 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
         predictionCol="prediction"
     )
     ```
+    * blazingDB: https://colab.research.google.com/drive/1r7S15Ie33yRw8cmET7_bjCpvjJiDOdub#scrollTo=8AdUt3HiUrc3
+      * claims 100x faster than spark
+        * uses GPU SQL Engine on RAPIDS
