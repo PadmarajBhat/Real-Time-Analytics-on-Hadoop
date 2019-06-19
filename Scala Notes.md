@@ -61,3 +61,7 @@ Here b = 1 and c is 2
   * auxillary constructor - this constructor
   * abstract class = cannot have object instantiation, may or may not define function, class extending can override the method and parameter
   * def + (x : class_name) = operator overriding
+
+* difference between foreach and map : https://stackoverflow.com/questions/17080186/difference-between-map-and-foreach-method-in-scala
+ * foreach does not have any return of values and works on the same principle as that of map
+ * map works on each of the items on which it is applied (usually list) and return the set of transformed items.
