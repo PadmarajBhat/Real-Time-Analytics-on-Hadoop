@@ -27,28 +27,6 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
            
           * Idea here is to broadcast the matrix B and parallelize matrix A when we need to multiply matrices A & B.
           * Here the matrix multiplication is done vector by vector method.
-* scala:
-  * val f= (x:Int)==>
-  * val f(x:Int)=
-  * are same
-
-* import can be 
- * ._ for all import
- * .a for only one component 
- * .{a,b} for 2 or more
- * .{vector => vsc2} for alias 
- * .{ABc => _, _} to leave ABC from importing 
-
-* data structure:
- * tuple through ()
- * List() for list 
- * indexing list through 
- * multivariable assignment through tuple 
- * 1 to 10 by 2 for odd series 
-
-* control:
- * if, if else, while, do while, for 
-
 
 * Pyspark Cheat Sheet:
   * https://www.qubole.com/resources/pyspark-cheatsheet/
@@ -71,3 +49,5 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
     * blazingDB: https://colab.research.google.com/drive/1r7S15Ie33yRw8cmET7_bjCpvjJiDOdub#scrollTo=8AdUt3HiUrc3
       * claims 100x faster than spark
         * uses GPU SQL Engine on RAPIDS
+        
+    * RDD functions quick recap : https://data-flair.training/blogs/spark-rdd-operations-transformations-actions/
