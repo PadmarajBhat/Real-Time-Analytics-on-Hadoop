@@ -69,5 +69,9 @@ Here b = 1 and c is 2
 * Imperative programming : https://www.scala-exercises.org/scala_tutorial/imperative_programming
  * to see the python like value assignment we need to have the variable declared as var x : Any. This would allow x to have value of an integer or a string too or for that matter "Any"thing.
  
-* (1 until 3).foreach(i=> "abcd".foreach(j => println(s"$i $j")))
+* ```(1 until 3).foreach(i=> "abcd".foreach(j => println(s"$i $j")))```
   * for each of 1,2 values associate each of "abcd". How? println inthis just a simple association. It could be anything. Note that foreach takes a function that operates on one instance of the var to which it is associated. This function can be anonymous. Anymous function do not have name but like other function operates on variable and hence starts witha variable and right hand side of "=>" this determines the body of it.
+
+ * ```(1 until 3).foreach(x => println(x)) : Note that ``` : Note that here we did not mention the data type of x. Even if you mentioned data type it would fail with syntax error. The reason being the foreach function takes the array or object on which it is being used as reference and provide the same to println. Therefore no data type is required.
+ 
+ * ```val aa = {i:Any => println(i)} ; aa("abcd","abcd")```: ```(abcd,abcd)``` = Here we need to define the type of the variable i because it is being passed to it and hence it has to be explicit about what is being passed and nothing to infer about the data type. Note that here it can take any number of argumets :)
