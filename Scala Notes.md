@@ -68,3 +68,6 @@ Here b = 1 and c is 2
 
 * Imperative programming : https://www.scala-exercises.org/scala_tutorial/imperative_programming
  * to see the python like value assignment we need to have the variable declared as var x : Any. This would allow x to have value of an integer or a string too or for that matter "Any"thing.
+ 
+* (1 until 3).foreach(i=> "abcd".foreach(j => println(s"$i $j")))
+  * for each of 1,2 values associate each of "abcd". How? println inthis just a simple association. It could be anything. Note that foreach takes a function that operates on one instance of the var to which it is associated. This function can be anonymous. Anymous function do not have name but like other function operates on variable and hence starts witha variable and right hand side of "=>" this determines the body of it.
