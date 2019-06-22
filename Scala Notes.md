@@ -75,3 +75,6 @@ Here b = 1 and c is 2
  * ```(1 until 3).foreach(x => println(x)) : Note that ``` : Note that here we did not mention the data type of x. Even if you mentioned data type it would fail with syntax error. The reason being the foreach function takes the array or object on which it is being used as reference and provide the same to println. Therefore no data type is required.
  
  * ```val aa = {i:Any => println(i)} ; aa("abcd","abcd")```: ```(abcd,abcd)``` = Here we need to define the type of the variable i because it is being passed to it and hence it has to be explicit about what is being passed and nothing to infer about the data type. Note that here it can take any number of argumets :)
+ 
+ * ```val states = Map("AL" -> List(1,2,3,4), "AK" -> "Alaska"); states("AL")``` : equivalent to python dictionary
+    * states += ("KA"-> "Karnataka") would fail here because states is "val" but works fine if it was "var"
