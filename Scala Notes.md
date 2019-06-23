@@ -116,3 +116,33 @@ Here b = 1 and c is 2
     
 * Type Classes:
   * to define a generic class which can cater to different class type.
+
+* partial function vs curried function:
+```
+def isInRange(left: Int, right: Int, n: Int): Boolean = {
+    if (left < n && n < right) true else false
+}
+
+
+val a = (isInRange _).curried
+
+val b = a(10)
+
+val c=  b(30)
+
+
+
+val abc = isInRange(20, 30,_ :Int)
+
+println(abc(0))
+
+println(c(0))
+```
+* Let us read the above code:
+ * isInRange will take 3 parameter; 3rd parameter is check for existing between first 2 parameters.
+ * now curried function let us create a function with respect each of those parameters in isInRange function.
+   * note that here it lets you create a function with respect one parameter only
+ * however, partial functions lets u change multiple parameter at a go.
+ * That does not say partial is better over curried.
+   * curried not only simplifies the code 
+   * and also confirms that we have addressed all the parameters
