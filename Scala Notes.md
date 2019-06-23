@@ -38,6 +38,10 @@ abc
   println(aa.right.get == 2) ==> 
   java.util.NoSuchElementException: Either.right.value on Left
   ```
+  
+* val type does not allow re assignment but allows appending
+ ``` val builder1 = new StringBuilder; builder1 += 'A';builder1 += 'C'; println(builder1)```: ```AC```
+ 
 * tuples:
 
 ```
