@@ -113,3 +113,6 @@ Here b = 1 and c is 2
  
  * ```val states = Map("AL" -> List(1,2,3,4), "AK" -> "Alaska"); states("AL")``` : equivalent to python dictionary
     * states += ("KA"-> "Karnataka") would fail here because states is "val" but works fine if it was "var"
+    
+* Type Classes:
+  * to define a generic class which can cater to different class type.
