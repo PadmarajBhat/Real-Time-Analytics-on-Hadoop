@@ -42,6 +42,37 @@ abc
 * val type does not allow re assignment but allows appending
  ``` val builder1 = new StringBuilder; builder1 += 'A';builder1 += 'C'; println(builder1)```: ```AC```
  
+* lazy evaluation:
+  * it is pretty intuitive but the coding can go tricky
+  ```
+  val builder = new StringBuilder
+
+  val x = { builder += 'x'; 1 }
+  lazy val y = { builder += 'y'; 2 }
+  def z = { builder += 'z'; 3 }
+
+  z + y + x + z + y + x
+
+  builder.result() shouldBe 
+  "xzyz"
+
+  ```
+  * Let us see in details how it works and results in "xzyz":
+    * Note that x and y are val; though y is lazy it is a val. Therefore, both will have the value only once.
+    * z is definition/function without parameter and hence will execute the fixed operation each time called.
+    * Now, since x is defined first, value 'x' goes into to builder for the first and last time and also x gets a value 1
+    * size y is defined lazy 'y' does not goes into builder at the time of definition and also would not get value 2
+    * z is not lazy but it is a function and hence it would not put value 'z' into builder until called.
+    
+    * Now let us look at the execution order:
+      * 'z' value is appended to builder and 3 is in memory ==> Output: xz and sum = 3
+      * 'y' value si appended to builder and 2 gets added to 3 ==> Output: xzy and sum = 5
+      * 1 gets added to 5 ==> Output: xzy and sum = 6
+      * 'z' value is appended to builder and 3 gets added to 6 ==> output xzyz and sum = 9
+      * 2 gets added to 9 ==> Output: xzyz and sum = 12
+      * 1 gets added to 12 ==> Output: builder = xzyz and sum = 13
+      
+      
 * tuples:
 
 ```
