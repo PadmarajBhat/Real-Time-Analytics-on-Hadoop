@@ -11,6 +11,7 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
 * https://towardsdatascience.com/deep-learning-with-apache-spark-part-1-6d397c16abd
 * https://twitter.com/hashtag/ApacheSpark?src=hash&lang=en
 
+* can we pass the pyspark dataframe to tensorflow?
 
 * Stackoverflow:
 
