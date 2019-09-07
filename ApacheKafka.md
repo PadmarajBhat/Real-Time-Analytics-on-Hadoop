@@ -2,6 +2,11 @@
 * Nice Blog to kick start: https://medium.com/better-programming/apache-kafka-in-action-6e19836c9d7b
     * Sequence of steps described:
         * start a zookeeper (with default property)
+            * it is mandatory to have zookeeper for kafka because it maintains the namespace and configuration data
+                  * controller election:
+                        * to route to available controller on failure of controllers
+                  * access control list of all the topics
+                  * membership of the cluster
         * start a kafka broker ( https://kafka.apache.org/intro )
             * is comparable to that of queing system where the q can be read multiple readers (consumers) with different offset. Each consumers can seek at thier will.
             * retension policy IF set to 2 days then when data is published, post retention period data is delete for freeing up store space.
