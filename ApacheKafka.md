@@ -25,9 +25,16 @@
                   * no sharding: no horizontal partitioning
                         * Shard: some tuples may be present in all the shards (unlike horizontal partitioning)
         * start a topic
-        * start a produce
+            * is like a table but not a table. Related logical records are stored against a topic.
+        * start a producer
+            * one who feeds the data in the key & value pair to a specific topic
         * start a consumer
+            * application subscribes (listens) to a topic. Or it may subscribe to all topic with access.
+            * application that processes the data (client application or ml model etc)
         
+    * can all consumer read any topic of any producer?
+      * yes, by definition but can be controlled through SSL, SASL and ACL 
+            * https://medium.com/@stephane.maarek/introduction-to-apache-kafka-security-c8951d410adf
     * A demonstration is provided for a scenario where in which consumer abruptly restarts but successfully is able to read all the messages from beginning.
     
     
