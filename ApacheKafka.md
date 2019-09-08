@@ -49,8 +49,11 @@
             * application that processes the data (client application or ml model etc)
         
     * can all consumer read any topic of any producer?
-      * yes, by definition but can be controlled through SSL, SASL and ACL 
-            * https://medium.com/@stephane.maarek/introduction-to-apache-kafka-security-c8951d410adf
+      * yes, by definition but can be controlled through 
+          * SSL(encryption between producer- broker, broker-consumer), 
+          * SASL (user and password system) 
+          * ACL (access control list) by default zookeeper manage the list and hence it has to secured or encrypted.
+          * https://medium.com/@stephane.maarek/introduction-to-apache-kafka-security-c8951d410adf
     * A demonstration is provided for a scenario where in which consumer abruptly restarts but successfully is able to read all the messages from beginning.
     
 ##### Why streaming is important ?
