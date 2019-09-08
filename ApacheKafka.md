@@ -23,16 +23,23 @@
                   * no fixed schema , key value pair
                   * records are stored in the order of arrival
                  
-               * sharding: horizontal partitioning - based on the hashing on key.
+               * No Sharding: only horizontal partitioning - based on the hashing on key.
                   * Shard: some tuples may be present in all the shards (unlike horizontal partitioning)
                   * this helps when there are multiple consumer to a topic to process the data parallel.
                   
-               * replicas:
+               * Replication:
                   * There can be n number brokers in a kafka cluster
                       * n number of cluster node/ brokers are split into One leader and rest followers
                   * producers write into leader and it is leader responsibility to replicate the same to followers
                   * one of follower will become a leader post current leader failure
                     * there may be a data loss when take over happens if the producer has opted to wait till only leader sync and not with replicas
+               * Availability
+                  * at most : consumer reads a message, update the position and process message. In this case if the failure is post  updation of index, we loose the data when the consumer comes back becuase index is alread forwarded.
+                  
+                  * at least : consumer reads a message, processes it and then update the position. In this case if the failure happens post processing then the consumer might read the message again and thus leading to duplicate processing.
+                  
+                  * exactly once: transaction based updation, where in which it rolls back if the consumer fails
+                  
         * start a topic
             * is like a table but not a table. Related logical records are stored against a topic.
         * start a producer
