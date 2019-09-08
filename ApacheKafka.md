@@ -20,10 +20,19 @@
                * I may be compared to that of queue files in NSK systems.
                   * No update
                   * sequential read and not random access
-                  * no schema , key value pair
-                  * records are stored in the form of schema
-                  * no sharding: no horizontal partitioning
-                        * Shard: some tuples may be present in all the shards (unlike horizontal partitioning)
+                  * no fixed schema , key value pair
+                  * records are stored in the order of arrival
+                 
+               * sharding: horizontal partitioning - based on the hashing on key.
+                  * Shard: some tuples may be present in all the shards (unlike horizontal partitioning)
+                  * this helps when there are multiple consumer to a topic to process the data parallel.
+                  
+               * replicas:
+                  * There can be n number brokers in a kafka cluster
+                      * n number of cluster node/ brokers are split into One leader and rest followers
+                  * producers write into leader and it is leader responsibility to replicate the same to followers
+                  * one of follower will become a leader post current leader failure
+                    * there may be a data loss when take over happens if the producer has opted to wait till only leader sync and not with replicas
         * start a topic
             * is like a table but not a table. Related logical records are stored against a topic.
         * start a producer
