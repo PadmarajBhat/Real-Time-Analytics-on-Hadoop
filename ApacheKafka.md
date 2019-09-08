@@ -37,4 +37,8 @@
             * https://medium.com/@stephane.maarek/introduction-to-apache-kafka-security-c8951d410adf
     * A demonstration is provided for a scenario where in which consumer abruptly restarts but successfully is able to read all the messages from beginning.
     
+##### Why streaming is important ?
+* Data lake Architecture thrives in the big data era. Data lake includes any/all data in its original form. This enables different users of data lake to transform the data respective to their focus area. Data can be in different format like image, videos, audio etc. and can be streaming data too. Including data lake to include the streaming data makes it more real time data capable. Apache Kafka shines here by connect the streaming source with big data platform. Data from the kafka can piped to any of the Hadoop component there by enabling almost any activity on it as required by the data lake users.
+   * nice article on Data lake: https://www.datasciencecentral.com/profiles/blogs/demystifying-data-lake-architecture
+    
     
