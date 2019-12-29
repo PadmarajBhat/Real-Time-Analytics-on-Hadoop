@@ -54,3 +54,4 @@ https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.quora.com/Why-d
     * RDD functions quick recap : https://data-flair.training/blogs/spark-rdd-operations-transformations-actions/
 
 * https://medium.com/@george.seif94/autokeras-the-killer-of-googles-automl-9e84c552a319?source=email-feada7b3aa03-1577569259484-digest.reader------0-59------------------02956d3c_6045_4321_bbeb_9ad30923f27a-1-----&sectionName=top
+* https://medium.com/@alexandregonfalonieri/lessons-learned-from-failed-ai-pocs-d888fe7ffbe?source=email-feada7b3aa03-1577569259484-digest.reader------3-38------------------02956d3c_6045_4321_bbeb_9ad30923f27a-1-----&sectionName=top
