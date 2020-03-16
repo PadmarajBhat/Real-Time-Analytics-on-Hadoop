@@ -7,3 +7,5 @@
 
 * quick look at limitation : https://developers.google.com/apps-script/guides/services/quotas#current_limitations
   * source of big data problem :P
+
+* **concurrency issue** : parallelism leads to race condition for resources and thus may slowdown couple based on availabity. I have split my triggers in different time.
