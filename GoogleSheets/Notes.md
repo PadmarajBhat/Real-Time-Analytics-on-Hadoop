@@ -10,3 +10,6 @@
   * source of big data problem :P
 
 * **concurrency issue** : parallelism leads to race condition for resources and thus may slowdown couple based on availabity. I have split my triggers in different time.
+
+
+* **async can help ?** : https://futurestud.io/tutorials/node-js-how-to-run-an-asynchronous-function-in-array-map
