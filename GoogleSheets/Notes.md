@@ -13,3 +13,4 @@
 
 
 * **async can help ?** : https://futurestud.io/tutorials/node-js-how-to-run-an-asynchronous-function-in-array-map
+* **Time Series Data** : It has to noted that not all IOT devices continuously send the data. Some may and some might not send. Some threshold might have acting as a filter.
